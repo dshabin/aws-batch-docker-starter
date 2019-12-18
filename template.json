@@ -54,6 +54,12 @@
           "SubnetId" : { "Ref" : "Subnet" }
         }
       },
+      "ECRRepository": {
+        "Type": "AWS::ECR::Repository",
+        "Properties": {
+          "RepositoryName" : "repository-name-1"
+        }
+      },
       "BatchServiceRole" : {
         "Type" : "AWS::IAM::Role",
         "Properties" : {
@@ -106,7 +112,7 @@
         "Properties" : {
           "Type" : "container",
           "ContainerProperties" : {
-            "Image" : <repositoryUri>:latest,
+            "Image" : { "Ref" : "ECRRepository" },
             "Vcpus" : 2,
             "Memory" : 2000
           },
